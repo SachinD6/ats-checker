@@ -1,8 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Anton } from "next/font/google";
+import { ThemeProvider } from "@/components/theme-provider";
+import localFont from "next/font/local";
+import FloatingNav from "@/components/ui/floating-nav";
+
 import "./globals.css";
+import { navItems } from "@/site/nav";
+import { ModeToggle } from "@/components/ui/theme-toggle";
 
 const inter = Inter({ subsets: ["latin"] });
+const anton = Anton({ subsets: ["latin"], weight: ["400"] });
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +23,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body
+          className={`antialiased  overflow-x-hidden overflow-y-auto  relative h-full w-full`}
+      >
+
+                    {/* <div className="absolute bottom-0 left-[-10%] right-0 top-[-10%] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(255,0,182,.15),rgba(255,255,255,0))]"></div>
+        <div className="absolute bottom-0 right-[-10%] top-[-5%] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(255,0,182,.15),rgba(255,255,255,0))]"></div> */}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+           <div className="w-full mx-auto py-[-50px] px-0 font-subalt ">
+              <header className="mt-4">
+                <FloatingNav navItems={navItems} />
+                  <ModeToggle />
+              </header>
+              </div>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
