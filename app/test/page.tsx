@@ -1,32 +1,40 @@
 import { ATSCORE } from "@/components/resume-score/ui/ats-score";
 import { CardDemo } from "@/components/resume-score/ui/card";
-import { CheckCircle2Icon, CheckCircleIcon, XCircleIcon } from "lucide-react";
+import { CheckCircle2Icon, CheckCircleIcon, Layout, XCircleIcon } from "lucide-react";
+import { LayoutGrid } from "@/components/ui/layout-grid";
 
 export default function Page() {
   return (
     <>
       <div className="max-w-7xl mx-auto">
         <ATSCORE score={90} />
+
+        <LayoutGrid cards = {cards} />
         <div className="flex flex-wrap -mx-2 mt-6">
       <div className="w-full md:w-1/2 px-2 mb-4">
         <CardDemo
           items={["no grammar mistakes", "this is good"]}
           title="Good practices"
-          icon={<CheckCircle2Icon className="text-green-600 w-5 h-5" />}
+          iconType="success"
         />
       </div>
       <div className="w-full md:w-1/2 px-2 mb-4">
         <CardDemo
           items={["no grammar mistakes", "this is good"]}
           title="Mistakes"
-          icon={<XCircleIcon className="text-red-600 w-5 h-5" />}
+          iconType="failure"
         />
       </div>
       <div className="w-full px-2 mb-4">
-        <CardDemo
+      <CardDemo
           items={["no grammar mistakes", "this is good"]}
           title="Suggestions"
-        />
+          iconType="suggestion"
+        />  <CardDemo
+        items={["no grammar mistakes", "this is good"]}
+        title="Suggestions"
+        iconType="strength"
+      />
       </div>
     </div>
         <h3 className=" my-6 rounded-md border bg-muted/50 p-4 text-lg text-muted-foreground">
@@ -62,3 +70,36 @@ export default function Page() {
     </>
   );
 }
+
+
+
+const cards = [
+  {
+    id: 1,
+    content: <p>p1</p>,
+    className: "md:col-span-2",
+    thumbnail:
+      "https://images.unsplash.com/photo-1476231682828-37e571bc172f?q=80&w=3474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: 2,
+    content: <p>p2</p>,
+    className: "col-span-1",
+    thumbnail:
+      "https://images.unsplash.com/photo-1464457312035-3d7d0e0c058e?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: 3,
+    content: <p>p3</p>,
+    className: "col-span-1",
+    thumbnail:
+      "https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: 4,
+    content: <p>p4</p>,
+    className: "md:col-span-2",
+    thumbnail:
+      "https://images.unsplash.com/photo-1475070929565-c985b496cb9f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+];

@@ -1,4 +1,4 @@
-import { BellRing, CheckCircleIcon, CheckIcon, XCircleIcon } from "lucide-react";
+import { AlertTriangle, BellElectric, BellRing, CheckCircleIcon, CheckIcon, ForwardIcon, FrownIcon, InfoIcon, SmileIcon, StarIcon, ThumbsUpIcon, XCircleIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -7,10 +7,17 @@ type CardProps = React.ComponentProps<typeof Card>;
 interface CardDemoProps extends CardProps {
   title: string;
   items: string[];
-  icon?: React.ReactNode;
+  iconType: "success" | "failure" |"strength" | "weakness" | "suggestion";
 }
 
-export function CardDemo({ className, title, items, icon, ...props }: CardDemoProps) {
+export function CardDemo({ className, title, items, iconType, ...props }: CardDemoProps) {
+    const iconMap = {
+        "success": <CheckCircleIcon className="text-green-600 w-5 h-5" />,
+        "failure": <XCircleIcon className="text-red-600 w-5 h-5" />,
+        "suggestion": <ThumbsUpIcon className="text-blue-600 w-5 h-5"/>,
+        "strength": <StarIcon className="text-violet-600 w-5 h-5" />,
+        "weakness": <AlertTriangle className="text-orange-600 w-5 h-5" />
+    }
   return (
     <Card className={cn("min-w-[400px] dark:shadow-lg shadow-sm", className)} {...props}>
       <CardHeader>
@@ -31,12 +38,13 @@ export function CardDemo({ className, title, items, icon, ...props }: CardDemoPr
         <div>
           {items.map((item, index) => (
             <div key={index} className="mb-4 last:mb-0 last:pb-0">
-              <div className="flex gap-3 items-center">
+                {/* TODO: Change the bg colors */}
+              <div className="flex gap-3 items-center border p-2 border-dashed rounded-lg bg-primary-foreground dark:bg-muted shadow-sm">
                 {/* {
                     title === "Mistakes" ? <XCircleIcon className="text-red-600 w-5 h-5" /> : <CheckCircleIcon className="text-green-600 w-5 h-5" />
                 } */}
                 <div>
-                { icon }
+                { iconType && <div>{iconMap[iconType]}</div> }
                 </div>
                 {/* <CheckIcon className="text-green-600" /> */}
                 <p className="text-lg leading-6">{item}</p>

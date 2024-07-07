@@ -8,12 +8,17 @@ import { ATSCORE } from "../resume-score/ui/ats-score";
 import { CardDemo } from "../resume-score/ui/card";
 import {
   CheckCircle2Icon,
+  ClipboardIcon,
   Frown,
+  HashIcon,
   Smile,
+  TextIcon,
   ThumbsUp,
+  TypeIcon,
   XCircleIcon,
 } from "lucide-react";
 import GeneralFeedback from "../resume-score/general-feedback";
+import { LayoutGrid } from "@/components/ui/layout-grid";
 
 const UploadForm = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -49,6 +54,54 @@ const UploadForm = () => {
     console.log(result);
   };
 
+  const cards = [
+    {
+      id: 1,
+      content: <div>
+        <span className="text-lg font-semibo flex gap-2 font-semibold text-primary"><HashIcon className="h-5 w-5"/>Relevance</span>
+        <p>
+        {result?.result.relevance}
+        </p>
+        </div>,
+      className: "md:col-span-2",
+      
+    },
+    {
+      id: 2,
+      content: 
+      <div>
+        <span className="text-lg font-semibold flex gap-2 items-center text-primary"><ClipboardIcon className="h-5 w-5"/>Grammar</span>
+        <p>      
+        {result?.result.suggestions.grammar}
+      </p>
+      </div>,
+      className: "col-span-1",
+    },
+  
+    {
+      id: 3,
+      content: <div>
+        <span className="text-lg font-semibold flex gap-2 items-center text-primary"><TypeIcon className="h-5 w-5"/>Spelling</span>
+        <p>
+        {result?.result.suggestions.spelling}
+        </p>
+      </div>,
+      className: "col-span-1",
+     
+    },
+    {
+      id: 4,
+      content: <div>
+        <span className="text-lg font-semibold flex gap-2 items-center text-primary"><TextIcon className="h-5 w-5"/>Formatting</span>
+        <p>
+        {result?.result.suggestions.formatting}
+        </p>
+      </div>,
+      className: "md:col-span-2",
+     
+    },
+  ];
+
   return (
     <>
       <form onSubmit={handleSubmit} action={handleSubmit}>
@@ -78,9 +131,7 @@ const UploadForm = () => {
         <div className="p-4">
           <ATSCORE score={result.result.atsScore} />
 
-          {/* <h3 className="rounded-md border bg-muted/50 p-4 text-lg text-muted-foreground mt-6">
-            {result.result.generalFeedback}
-          </h3> */}
+          <LayoutGrid cards={cards} />
 
           <GeneralFeedback title={result.result.generalFeedback} />
 
@@ -89,7 +140,7 @@ const UploadForm = () => {
               <CardDemo
                 items={result.result.mistakes}
                 title="Mistakes"
-                icon={<XCircleIcon className="text-red-600 w-5 h-5" />}
+                iconType="failure"
               />
             </div>
 
@@ -97,14 +148,14 @@ const UploadForm = () => {
               <CardDemo
                 items={result.result.correctThings}
                 title="Good Practices"
-                icon={<CheckCircle2Icon className="text-green-600 w-5 h-5" />}
+                iconType="success"
               />
             </div>
             <div className="w-full px-2 mb-4">
               <CardDemo
                 items={result.result.suggestions.improvement}
                 title="Suggestions"
-                icon={<ThumbsUp className="w-5 h-5" />}
+                iconType="suggestion"
               />
             </div>
           </div>
@@ -114,7 +165,7 @@ const UploadForm = () => {
               <CardDemo
                 items={result.result.suggestions.strengths}
                 title="Strengths"
-                icon={<Smile className="w-5 h-5" />}
+                iconType="strength"
               />
             </div>
 
@@ -122,11 +173,11 @@ const UploadForm = () => {
               <CardDemo
                 items={result.result.suggestions.weaknesses}
                 title="Weaknesses"
-                icon={<Frown className="w-5 h-5" />}
+                iconType="weakness"
               />
             </div>
           </div>
-
+{/* 
           <h3 className="text-lg font-semibold mb-2">Relevance</h3>
           <p className="ml-4 mb-4">{result.result.relevance}</p>
 
@@ -138,7 +189,7 @@ const UploadForm = () => {
           <p className="ml-4 mb-4">{result.result.suggestions.spelling}</p>
 
           <h4 className="text-md font-medium mb-1">Formatting</h4>
-          <p className="ml-4">{result.result.suggestions.formatting}</p>
+          <p className="ml-4">{result.result.suggestions.formatting}</p> */}
         </div>
       )}
     </>
@@ -146,3 +197,6 @@ const UploadForm = () => {
 };
 
 export default UploadForm;
+
+
+
