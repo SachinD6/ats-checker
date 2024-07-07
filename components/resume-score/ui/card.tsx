@@ -19,7 +19,7 @@ export function CardDemo({ className, title, items, iconType, ...props }: CardDe
         "weakness": <AlertTriangle className="text-orange-600 w-5 h-5" />
     }
   return (
-    <Card className={cn("min-w-[400px] dark:shadow-lg shadow-sm", className)} {...props}>
+    <Card className={cn("min-w-[400px] border border-black/[0.2] bg-gradient-to-tr from-purple-400/20 to-transparent dark:border-white/[0.2]", className)} {...props}>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
       </CardHeader>

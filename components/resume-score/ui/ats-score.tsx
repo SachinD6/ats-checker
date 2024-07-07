@@ -86,7 +86,7 @@ export function ATSCORE({ score }: { score: number | string }) {
   const actionableTips = getActionableTips(Number(score));
 
   return (
-    <Card className="flex flex-col my-6">
+    <Card className="flex flex-col my-6 border border-black/[0.2] bg-gradient-to-tr from-purple-400/20 to-transparent dark:border-white/[0.2]">
       <CardHeader className="items-center pb-0">
         <CardTitle>{feedbackMessage}</CardTitle>
       </CardHeader>

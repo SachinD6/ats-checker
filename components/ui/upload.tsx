@@ -58,7 +58,7 @@ const UploadForm = () => {
     {
       id: 1,
       content: <div>
-        <span className="text-lg font-semibo flex gap-2 font-semibold text-primary"><HashIcon className="h-5 w-5"/>Relevance</span>
+        <span className="text-lg font-semibold flex gap-2 "><HashIcon className="h-5 w-5"/>Relevance</span>
         <p>
         {result?.result.relevance}
         </p>
@@ -70,7 +70,7 @@ const UploadForm = () => {
       id: 2,
       content: 
       <div>
-        <span className="text-lg font-semibold flex gap-2 items-center text-primary"><ClipboardIcon className="h-5 w-5"/>Grammar</span>
+        <span className="text-lg font-semibold flex gap-2 items-center"><ClipboardIcon className="h-5 w-5"/>Grammar</span>
         <p>      
         {result?.result.suggestions.grammar}
       </p>
@@ -81,7 +81,7 @@ const UploadForm = () => {
     {
       id: 3,
       content: <div>
-        <span className="text-lg font-semibold flex gap-2 items-center text-primary"><TypeIcon className="h-5 w-5"/>Spelling</span>
+        <span className="text-lg font-semibold flex gap-2 items-center "><TypeIcon className="h-5 w-5"/>Spelling</span>
         <p>
         {result?.result.suggestions.spelling}
         </p>
@@ -92,7 +92,7 @@ const UploadForm = () => {
     {
       id: 4,
       content: <div>
-        <span className="text-lg font-semibold flex gap-2 items-center text-primary"><TextIcon className="h-5 w-5"/>Formatting</span>
+        <span className="text-lg font-semibold flex gap-2 items-center"><TextIcon className="h-5 w-5"/>Formatting</span>
         <p>
         {result?.result.suggestions.formatting}
         </p>

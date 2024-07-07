@@ -13,7 +13,7 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
 
 
   return (
-    <div className="w-full h-full p-10 grid grid-cols-1 md:grid-cols-3  max-w-7xl mx-auto gap-4 relative">
+    <div className="w-full h-full grid grid-cols-1 md:grid-cols-3 gap-4 relative my-10 ">
       {cards.map((card, i) => (
         <div key={i} className={cn(card.className, "")}>
           <motion.div
@@ -25,7 +25,7 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
             layout
           >
             {/* {selected?.id === card.id && <SelectedCard selected={selected} />} */}
-            <div className="p-4 bg-primary-foreground dark:bg-muted rounded-lg">
+            <div className="p-4 border border-black/[0.2] bg-gradient-to-tr from-purple-400/20 to-transparent dark:border-white/[0.2] rounded-lg">
 
             {card.content}
             </div>
