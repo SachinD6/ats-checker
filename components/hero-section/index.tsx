@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import Feeder from "@/components/ui/feeder";
 import Spotlight from "@/components/ui/Spotlight";
 import { Github } from "lucide-react";
+import { IconBrandGithub } from "@tabler/icons-react";
 
 export default function HeroSection() {
   const ref = React.useRef(null);
@@ -50,16 +51,16 @@ export default function HeroSection() {
               color: "transparent",
             }}
           >
-            <Feeder feed="Latest Blogs" />
+            <Feeder feed="Github" icon={<IconBrandGithub />} />
             <div className="mb-4"></div>
-            Beautifully crafted resumes
+            See ATS Fit powered with AI
 
           </motion.h1>
           <motion.p
             variants={FADE_DOWN_ANIMATION_VARIANTS}
             className="mt-6 text-lg leading-8"
           >
-            A compilation of AI-crafted resumes designed for impact.
+            Get deep insights on how well your resume is optimized for ATS.
           </motion.p>
 
           <motion.div
@@ -71,7 +72,7 @@ export default function HeroSection() {
             </Link>
 
             <Link
-              href="https://github.com/Kinfe123/kinfish-dumpy"
+              href="https://github.com/sachind6/ats-checker"
               target="_blank"
               className="z-50"
             >
@@ -79,7 +80,7 @@ export default function HeroSection() {
                 variant="ghost"
                 className="outline-none bg-transparent hover:bg-transparent/5"
               >
-                <Github className="mx-2" /> Get the github &nbsp;
+                <IconBrandGithub className="mx-2" /> Get the Code &nbsp;
                 <span aria-hidden="true">→</span>
               </Button>
             </Link>

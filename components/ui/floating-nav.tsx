@@ -9,6 +9,7 @@ import {
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Icon } from "./card-binary";
+import { ModeToggle } from "./theme-toggle";
 const FloatingNav = ({
   navItems,
   className,
@@ -67,17 +68,21 @@ const FloatingNav = ({
                 key={`link=${idx}`}
                 href={navItem.link}
                 className={cn(
-                  "relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
+                  "relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500 text-nowrap"
                 )}
               >
                 {/* <span className="block sm:hidden">{navItem.icon}</span> */}
                 <span className="hidden text-sm sm:block mr-[1.20rem]">{navItem.name}</span>  <Icon className=" h-6 w-6 bg-transparent text-gray-300/40 transform rotate-45 mx-20 " />
               </Link>
             ))}
-            <button className="relative py-2 px-4 text-sm font-medium text-black rounded-full border dark:text-white border-neutral-200 dark:border-white/[0.2]">
-              <span>Login</span>
+            <Link href ="/check-ats">
+            <button className="text-nowrap relative py-2 px-4 text-sm font-medium text-black rounded-full border dark:text-white border-neutral-200 dark:border-white/[0.2]">
+              <span>Analyse Resume</span>
               <span className="absolute inset-x-0 -bottom-px mx-auto w-1/2 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
             </button>
+              </Link>
+              <ModeToggle />
+
           </div>
         </motion.div>
         {/* </motion.div> */}

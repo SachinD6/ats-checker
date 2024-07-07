@@ -32,10 +32,10 @@ export const parseResume = async (data: FormData) => {
   let resumeData: any = null;
 
   try {
-    if (resumeExtension === ".pdf") {
+    if (resumeExtension === ".pdf" || file.type === "application/pdf") {
       resumeData = await parsePdf(dataBuffer);
       resumeData = cleanText(resumeData);
-    } else if (resumeExtension === ".docx") {
+    } else if (resumeExtension === (".docx" || "doc") || file.type === ("application/vnd.openxmlformats-officedocument.wordprocessingml.document" || "application/msword")) {
       const result = await mammoth.extractRawText({ buffer: dataBuffer });
       resumeData = cleanText(result.value);
       resumeData = result;

@@ -11,16 +11,16 @@ export function cn(...inputs: ClassValue[]) {
 const sectionKeywords = {
   personalInfo: ["email", "phone", "linkedin", "github", "contact", "address"],
   summary: ["summary", "objective", "professional summary", "career summary"],
-  education: ["education", "academic background", "academic qualifications"],
-  workExperience: ["experience", "work experience", "employment history", "professional experience", "career history", "work history"],
-  skills: ["skills", "technical skills", "key skills", "core competencies", "tools"],
-  certifications: ["certifications", "licenses", "accreditations"],
+  education: ["education", "academic background", "academic qualifications", "academic history", "qualifications",],
+  workExperience: ["experience", "work experience", "employment history", "professional experience", "career history", "work history", "freelance", "internship"],
+  skills: ["skills", "technical skills", "key skills", "core competencies", "tools", "technologies", "soft skills"],
+  certifications: ["certifications", "licenses", "accreditations", "certificates", "training", "courses"],
   projects: ["projects", "portfolio", "case studies"],
-  languages: ["languages", "language proficiency", "language skills"],
-  awards: ["awards", "honors", "recognitions"],
+  languages: ["languages", "language proficiency", "language skills", "spoken languages"],
+  awards: ["awards", "honors", "recognitions", "achievements", "scholarships"],
   publications: ["publications", "research papers", "articles", "patents"],
-  volunteerExperience: ["volunteer experience", "community service", "volunteer work", "extracurricular"],
-  professionalMemberships: ["professional memberships", "affiliations", "memberships"],
+  volunteerExperience: ["volunteer experience", "community service", "volunteer work", "extracurricular", "social activities", "community involvement"],
+  professionalMemberships: ["professional memberships", "affiliations", "memberships", "associations", "organizations"],
   interests: ["interests", "hobbies", "personal interests"],
   references: ["references", "referees"],
 };
@@ -102,4 +102,6 @@ export const cleanText = (text: string) => {
 
   return sections;
 };
+
+
 

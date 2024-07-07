@@ -1,116 +1,121 @@
 "use client";
 import React, { useState } from "react";
 
-import { parseResume } from "@/actions/parse-resume";
+import { parseResume } from "@/actions/analyze-resume";
 import { Input } from "@/components/ui/input";
-import { Button } from "./button";
-import { ATSCORE } from "../resume-score/ui/ats-score";
-import { CardDemo } from "../resume-score/ui/card";
-import {
-  CheckCircle2Icon,
-  ClipboardIcon,
-  Frown,
-  HashIcon,
-  Smile,
-  TextIcon,
-  ThumbsUp,
-  TypeIcon,
-  XCircleIcon,
-} from "lucide-react";
-import GeneralFeedback from "../resume-score/general-feedback";
-import { LayoutGrid } from "@/components/ui/layout-grid";
+import { Button } from "@/components/ui/button";
 
+import { Loader2Icon } from "lucide-react";
+import { SkeletonCard } from "@/components/resume-score/ui/skeleton-card";
+import ResultDisplay from "@/components/resume-score/ResultDisplay";
+import { useToast } from "@/components/ui/use-toast";
+
+// TODO: HANDLE SIZE MORE THAN 2MB
 const UploadForm = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState<File | undefined>(undefined);
   const [role, setRole] = useState("");
   const [isUploading, setIsUploading] = useState(false);
-  const [parseError, setParseError] = useState(null);
-  const [result, setResult] = useState(null);
+  const [parseError, setParseError] = useState<string | null>(null);
+  const [result, setResult] = useState<null | {
+    result: {
+      atsScore: number;
+      generalFeedback: string;
+      mistakes: string[];
+      correctThings: string[];
+      relevance: string;
+      suggestions: {
+        grammar: string;
+        spelling: string;
+        strengths: string[];
+        weaknesses: string[];
+        improvement: string[];
+        formatting: string;
+      };
+    };
+  }>(null);
+
+  const { toast } = useToast();
+
+  const MAX_FILE_SIZE = 5000000; // 2mb
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files[0];
+    const file = event.target.files?.[0];
+    // if (file?.size ?? 0 > MAX_FILE_SIZE) {
+    //   setParseError("File size should be less than 2MB");
+    //   toast({
+    //     title: "Uh oh! Something went wrong.",
+    //     description:
+    //       parseError || "File size should be less than 2mb",
+    //   });
+    //   return;
+    // }
     setSelectedFile(file);
     setParseError(null); // Clear any previous errors
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsUploading(true);
 
     const formData = new FormData();
-    formData.append("file", selectedFile);
+    if (selectedFile) {
+      formData.append("file", selectedFile);
+    }
     formData.append("role", role);
 
     try {
-      // Call your parseResume function here
       const result = await parseResume(formData);
       setResult(result);
-      console.log(result);
       setIsUploading(false);
-    } catch (error) {
+    } catch (error: any) {
       setParseError(error?.message || "An error occurred");
+      toast({
+        title: "Uh oh! Something went wrong.",
+        description: parseError,
+      });
+      setIsUploading(false);
     }
-
-    console.log(result);
   };
-
-  const cards = [
-    {
-      id: 1,
-      content: <div>
-        <span className="text-lg font-semibold flex gap-2 "><HashIcon className="h-5 w-5"/>Relevance</span>
-        <p>
-        {result?.result.relevance}
-        </p>
-        </div>,
-      className: "md:col-span-2",
-      
-    },
-    {
-      id: 2,
-      content: 
-      <div>
-        <span className="text-lg font-semibold flex gap-2 items-center"><ClipboardIcon className="h-5 w-5"/>Grammar</span>
-        <p>      
-        {result?.result.suggestions.grammar}
-      </p>
-      </div>,
-      className: "col-span-1",
-    },
-  
-    {
-      id: 3,
-      content: <div>
-        <span className="text-lg font-semibold flex gap-2 items-center "><TypeIcon className="h-5 w-5"/>Spelling</span>
-        <p>
-        {result?.result.suggestions.spelling}
-        </p>
-      </div>,
-      className: "col-span-1",
-     
-    },
-    {
-      id: 4,
-      content: <div>
-        <span className="text-lg font-semibold flex gap-2 items-center"><TextIcon className="h-5 w-5"/>Formatting</span>
-        <p>
-        {result?.result.suggestions.formatting}
-        </p>
-      </div>,
-      className: "md:col-span-2",
-     
-    },
-  ];
 
   return (
     <>
       <form onSubmit={handleSubmit} action={handleSubmit}>
-        <Input
-          type="file"
-          accept="*"
-          onChange={handleFileChange}
-          disabled={isUploading}
-        />
+        <label
+          htmlFor="dropzone-file"
+          className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer"
+        >
+          <div className="flex flex-col items-center justify-center pt-5 pb-6">
+            <svg
+              className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 20 16"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+              />
+            </svg>
+            <p className="mb-2 text-sm ">
+              <span className="font-semibold">Click to upload</span> or drag and
+              drop
+            </p>
+            <p className="text-xs ">PDF (MAX 2mb)</p>
+          </div>
+          <Input
+            type="file"
+            id="dropzone-file"
+            name="dropzone-file"
+            accept=".pdf"
+            onChange={handleFileChange}
+            disabled={isUploading}
+            className="hidden"
+          />
+        </label>
         <br />
         <Input
           type="text"
@@ -121,82 +126,24 @@ const UploadForm = () => {
         />{" "}
         <br />
         {/* <input type="text" name="role" value={role} onChange={()=> setRole(role)}/> <br/> */}
-        <Button type="submit" disabled={isUploading}>
-          {isUploading ? "Generating ATS Score..." : "Analayze resume"}
+        <Button type="submit" disabled={isUploading || !selectedFile}>
+          {isUploading ? (
+            <>
+              Generating ATS Score{" "}
+              <Loader2Icon className="h-5 w-5 ml-3 animate-spin" />
+            </>
+          ) : (
+            "Analyze Resume"
+          )}
         </Button>
-        {parseError && <p className="error">{parseError}</p>}
+        {/* {parseError && <p className="error">{parseError}</p>} */}
       </form>
 
-      {result && (
-        <div className="p-4">
-          <ATSCORE score={result.result.atsScore} />
+      {isUploading && <SkeletonCard />}
 
-          <LayoutGrid cards={cards} />
-
-          <GeneralFeedback title={result.result.generalFeedback} />
-
-          <div className="flex flex-wrap -mx-2 mt-6">
-            <div className="w-full md:w-1/2 px-2 mb-4">
-              <CardDemo
-                items={result.result.mistakes}
-                title="Mistakes"
-                iconType="failure"
-              />
-            </div>
-
-            <div className="w-full md:w-1/2 px-2 mb-4">
-              <CardDemo
-                items={result.result.correctThings}
-                title="Good Practices"
-                iconType="success"
-              />
-            </div>
-            <div className="w-full px-2 mb-4">
-              <CardDemo
-                items={result.result.suggestions.improvement}
-                title="Suggestions"
-                iconType="suggestion"
-              />
-            </div>
-          </div>
-
-          <div className="flex flex-wrap -mx-2 mt-6">
-            <div className="w-full md:w-1/2 px-2 mb-4">
-              <CardDemo
-                items={result.result.suggestions.strengths}
-                title="Strengths"
-                iconType="strength"
-              />
-            </div>
-
-            <div className="w-full md:w-1/2 px-2 mb-4">
-              <CardDemo
-                items={result.result.suggestions.weaknesses}
-                title="Weaknesses"
-                iconType="weakness"
-              />
-            </div>
-          </div>
-{/* 
-          <h3 className="text-lg font-semibold mb-2">Relevance</h3>
-          <p className="ml-4 mb-4">{result.result.relevance}</p>
-
-          <h3 className="text-lg font-semibold mb-2">Suggestions</h3>
-          <h4 className="text-md font-medium mb-1">Grammar</h4>
-          <p className="ml-4 mb-4">{result.result.suggestions.grammar}</p>
-
-          <h4 className="text-md font-medium mb-1">Spelling</h4>
-          <p className="ml-4 mb-4">{result.result.suggestions.spelling}</p>
-
-          <h4 className="text-md font-medium mb-1">Formatting</h4>
-          <p className="ml-4">{result.result.suggestions.formatting}</p> */}
-        </div>
-      )}
+      {result && !parseError && <ResultDisplay result={result} />}
     </>
   );
 };
 
 export default UploadForm;
-
-
-
