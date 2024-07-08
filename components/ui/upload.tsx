@@ -36,7 +36,6 @@ const UploadForm = () => {
 
   const { toast } = useToast();
 
-  const MAX_FILE_SIZE = 5000000; // 2mb
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -79,7 +78,7 @@ const UploadForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} action={handleSubmit}>
+      <form onSubmit={handleSubmit} action={handleSubmit} className="mt-32">
         <label
           htmlFor="dropzone-file"
           className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer"
@@ -104,7 +103,8 @@ const UploadForm = () => {
               <span className="font-semibold">Click to upload</span> or drag and
               drop
             </p>
-            <p className="text-xs ">PDF (MAX 2mb)</p>
+            <p className="text-xs mb-2">PDF (MAX 2mb)</p>
+            <p>{selectedFile?.name}</p>
           </div>
           <Input
             type="file"

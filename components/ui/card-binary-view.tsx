@@ -8,7 +8,6 @@ import HackyButton from "@/components/hacky-button";
 type PostCardProps = {
   title: string;
   description: string;
-  slug: string;
   date: string;
 };
 export function PostCard(props: PostCardProps) {
@@ -28,7 +27,6 @@ export function PostCard(props: PostCardProps) {
         Watch me hover
       </p> */}
      
-      <ButtonStd route={props.slug} text="Read More" />
     </div>
   );
 }

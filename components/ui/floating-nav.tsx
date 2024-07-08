@@ -81,7 +81,7 @@ const FloatingNav = ({
               <span className="absolute inset-x-0 -bottom-px mx-auto w-1/2 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
             </button>
               </Link>
-              <ModeToggle />
+              {/* <ModeToggle /> */}
 
           </div>
         </motion.div>
