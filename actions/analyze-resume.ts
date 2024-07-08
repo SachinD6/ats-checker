@@ -8,6 +8,7 @@ import { google } from "@ai-sdk/google";
 import { z } from "zod";
 import { cleanText } from "@/lib/utils";
 
+import { maxDuration } from "@/constants";
 
 // Function to parse PDF files using pdf-parse
 const parsePdf = async (dataBuffer: Buffer): Promise<string> => {
