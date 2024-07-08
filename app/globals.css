@@ -23,6 +23,8 @@
     --destructive-foreground: 6 86% 95%;
     --ring: 233 42% 36%;
     --radius: 0.5rem;
+
+
   }
 
   .dark {
@@ -45,16 +47,8 @@
     --destructive: 6 86% 53%;
     --destructive-foreground: 0 0% 100%;
     --ring: 233 42% 36%;
-  }
-}
 
- 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
+
   }
 }
 

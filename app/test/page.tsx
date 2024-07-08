@@ -1,105 +1,188 @@
+import Card from "@/components/ui/card-new";
+import {
+  IconBrandGithub as Github,
+  IconBrandTwitter as Twitter,
+} from "@tabler/icons-react";
+import WebVitals from "@/components/ui/web-vitals";
+import ComponentGrid from "@/components/ui/component-grid";
+import Image from "next/image";
+import BlurFade from "@/components/magicui/blur-fade";
 import { ATSCORE } from "@/components/resume-score/ui/ats-score";
-import { CardDemo } from "@/components/resume-score/ui/card";
-import { CheckCircle2Icon, CheckCircleIcon, Layout, XCircleIcon } from "lucide-react";
-import { LayoutGrid } from "@/components/ui/layout-grid";
+
+const DEPLOY_URL = "/";
+
+const features = [
+  {
+    title: "AI-Powered Resume Analysis",
+    description:
+      "Get instant feedback on your resume with AI-powered analysis that checks for formatting, keyword optimization, and overall readability.",
+    large: true,
+  },
+  {
+    title: "Performance Metrics",
+    description:
+      "Built on advanced algorithms and machine learning models to ensure accurate and fast resume evaluations.",
+    demo: <WebVitals />,
+  },
+  {
+    title: "One-click Deploy",
+    description:
+      "Jumpstart your next project by deploying Precedent to [Vercel](https://vercel.com/) in one click.",
+    demo: (
+      <a href={DEPLOY_URL}>
+        <Image
+          src="https://vercel.com/button"
+          alt="Deploy with Vercel"
+          width={120}
+          height={30}
+          unoptimized
+        />
+      </a>
+    ),
+  },
+  {
+    title: "Built-in Auth + Database",
+    description:
+      "Precedent comes with authentication and database via [Auth.js](https://authjs.dev/) + [Prisma](https://prisma.io/)",
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <Image alt="Auth.js logo" src="/authjs.webp" width={50} height={50} />
+        <Image alt="Prisma logo" src="/prisma.svg" width={50} height={50} />
+      </div>
+    ),
+  },
+  {
+    title: "Real-Time Content Suggestions",
+    description:
+      "Receive real-time content suggestions and tips to enhance your resume's impact and effectiveness.",
+    demo: (
+      <div className="grid grid-flow-col grid-rows-3 gap-10 p-10">
+        <span className="font-mono font-semibold">useIntersectionObserver</span>
+        <span className="font-mono font-semibold">useLocalStorage</span>
+        <span className="font-mono font-semibold">useScroll</span>
+        <span className="font-mono font-semibold">nFormatter</span>
+        <span className="font-mono font-semibold">capitalize</span>
+        <span className="font-mono font-semibold">truncate</span>
+      </div>
+    ),
+  },
+];
 
 export default function Page() {
   return (
     <>
-      <div className="max-w-7xl mx-auto">
-        <ATSCORE score={90} />
+    <ATSCORE score={40} />
+      <div className="w-full max-w-xl px-5 mx-auto xl:px-0 drop-shadow-sm pt-12 text-center">
+      <BlurFade delay={0.07} inView>
+          <a
+            href="https://twitter.com/steventey/status/1613928948915920896"
+            target="_blank"
+            rel="noreferrer"
+            className="mx-auto mb-5 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full bg-blue-100 px-7 py-2 transition-colors hover:bg-blue-200"
+          >
+            <Twitter className="h-5 w-5 text-[#1d9bf0]" />
+            <p className="text-sm font-semibold text-[#1d9bf0] drop-shadow-sm">
+              Introducing Precedent
+            </p>
+          </a>
+        </BlurFade>
 
-        <LayoutGrid cards = {cards} />
-        <div className="flex flex-wrap -mx-2 mt-6">
-      <div className="w-full md:w-1/2 px-2 mb-4">
-        <CardDemo
-          items={["no grammar mistakes", "this is good"]}
-          title="Good practices"
-          iconType="success"
-        />
-      </div>
-      <div className="w-full md:w-1/2 px-2 mb-4">
-        <CardDemo
-          items={["no grammar mistakes", "this is good"]}
-          title="Mistakes"
-          iconType="failure"
-        />
-      </div>
-      <div className="w-full px-2 mb-4">
-      <CardDemo
-          items={["no grammar mistakes", "this is good"]}
-          title="Suggestions"
-          iconType="suggestion"
-        />  <CardDemo
-        items={["no grammar mistakes", "this is good"]}
-        title="Suggestions"
-        iconType="strength"
-      />
-      </div>
-    </div>
-        <h3 className=" my-6 rounded-md border bg-muted/50 p-4 text-lg text-muted-foreground">
-          Your resume has some good elements, but it needs significant
-          improvements to be ATS-compatible and effectively highlight your
-          qualifications. The formatting is confusing, making it difficult to
-          understand your experience. You need to use consistent formatting,
-          include specific keywords, and quantify your accomplishments to make
-          your resume stronger.
-        </h3>
+        <BlurFade delay={0.5}>
+          <h1
+            className="text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-7xl md:leading-[5rem]"
+            style={{
+              backgroundImage:
+                "linear-gradient(to bottom right, black, #78716c)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+            }}
+          >
+            See your ATS fit powered by AI
+          </h1>
 
-        <div className="p-4 bg-transparent bg-glass-gradient rounded-xl border shadow-md">
-        <div className="p-4">
-                  <svg
-                    className="w-9 h-9 text-gray-300"
-                    viewBox="0 0 35 35"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M9.47895 14.5833C9.15374 14.5833 8.84166 14.6329 8.53103 14.6781C8.63166 14.3398 8.7352 13.9956 8.90145 13.6865C9.0677 13.2373 9.32728 12.8479 9.58541 12.4556C9.80124 12.0312 10.1819 11.7439 10.4619 11.3808C10.755 11.0279 11.1546 10.7931 11.471 10.5C11.7817 10.1937 12.1885 10.0406 12.5123 9.82478C12.8506 9.63082 13.1452 9.41645 13.4602 9.31437L14.2462 8.99062L14.9375 8.70332L14.2302 5.87708L13.3596 6.08707C13.081 6.15707 12.7412 6.23874 12.3548 6.33645C11.9596 6.40937 11.5381 6.60916 11.0685 6.79145C10.6048 6.99853 10.0681 7.13853 9.56937 7.47103C9.0677 7.78895 8.48874 8.05437 7.97833 8.4802C7.48395 8.91916 6.88749 9.29978 6.44708 9.85833C5.96583 10.3804 5.49041 10.9287 5.12145 11.5529C4.69416 12.1479 4.40395 12.8012 4.0977 13.4473C3.82062 14.0933 3.59749 14.754 3.4152 15.3956C3.06958 16.6819 2.91499 17.904 2.8552 18.9496C2.80562 19.9967 2.83478 20.8673 2.89603 21.4973C2.91791 21.7948 2.95874 22.0835 2.98791 22.2833L3.02437 22.5283L3.06228 22.5196C3.32167 23.7312 3.91877 24.8446 4.78452 25.7311C5.65028 26.6175 6.7493 27.2408 7.95447 27.5287C9.15963 27.8166 10.4217 27.7575 11.5946 27.3581C12.7676 26.9587 13.8035 26.2354 14.5825 25.2719C15.3616 24.3083 15.8519 23.1439 15.9969 21.9133C16.1418 20.6828 15.9353 19.4363 15.4014 18.3181C14.8675 17.2 14.028 16.2558 12.9799 15.5949C11.9318 14.934 10.718 14.5832 9.47895 14.5833ZM25.5206 14.5833C25.1954 14.5833 24.8833 14.6329 24.5727 14.6781C24.6733 14.3398 24.7769 13.9956 24.9431 13.6865C25.1094 13.2373 25.369 12.8479 25.6271 12.4556C25.8429 12.0312 26.2235 11.7439 26.5035 11.3808C26.7967 11.0279 27.1962 10.7931 27.5127 10.5C27.8233 10.1937 28.2302 10.0406 28.554 9.82478C28.8923 9.63082 29.1869 9.41645 29.5019 9.31437L30.2879 8.99062L30.9792 8.70332L30.2719 5.87708L29.4012 6.08707C29.1227 6.15707 28.7829 6.23874 28.3965 6.33645C28.0012 6.40937 27.5798 6.60916 27.1102 6.79145C26.6479 6.99999 26.1098 7.13853 25.611 7.47249C25.1094 7.79041 24.5304 8.05582 24.02 8.48166C23.5256 8.92062 22.9292 9.30124 22.4887 9.85833C22.0075 10.3804 21.5321 10.9287 21.1631 11.5529C20.7358 12.1479 20.4456 12.8012 20.1394 13.4473C19.8623 14.0933 19.6392 14.754 19.4569 15.3956C19.1112 16.6819 18.9567 17.904 18.8969 18.9496C18.8473 19.9967 18.8765 20.8673 18.9377 21.4973C18.9596 21.7948 19.0004 22.0835 19.0296 22.2833L19.066 22.5283L19.104 22.5196C19.3633 23.7312 19.9604 24.8446 20.8262 25.7311C21.6919 26.6175 22.791 27.2408 23.9961 27.5287C25.2013 27.8166 26.4634 27.7575 27.6363 27.3581C28.8093 26.9587 29.8452 26.2354 30.6242 25.2719C31.4033 24.3083 31.8936 23.1439 32.0385 21.9133C32.1834 20.6828 31.977 19.4363 31.4431 18.3181C30.9092 17.2 30.0697 16.2558 29.0216 15.5949C27.9735 14.934 26.7597 14.5832 25.5206 14.5833Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                  <p className="text-lg">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati, voluptas. Quos, nam ab ipsam distinctio nostrum sint quasi aperiam itaque voluptate esse, molestiae, excepturi tempora odio neque nihil quo maxime.</p>
-                </div>
+          <p className="mt-6 text-center text-gray-500 md:text-xl">
+            Get expert tips and instant feedback to refine your resume. Built
+            with{" "}
+            <a
+              href="https://nextjs.org/"
+              target="_blank"
+              className="underline font-semibold text-neutral-600"
+            >
+              Next.js 15
+            </a>{" "}
+            <a
+              href="https://ai.google.dev/"
+              target="_blank"
+              className="underline font-semibold text-neutral-600"
+            >
+              , Gemini AI
+            </a>{" "}
+            &{" "}
+            <a
+              href="https://ui.shadcn.com/"
+              target="_blank"
+              className="underline font-semibold text-neutral-600"
+            >
+              Shadcn UI
+            </a>
+            .
+          </p>
+        </BlurFade>
+
+        <div className="mx-auto mt-6 flex items-center justify-center space-x-5">
+          <a
+            className="group flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-black px-5 py-2 text-sm text-white hover:bg-white hover:text-black"
+            href={DEPLOY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg
+              className="h-4 w-4 group-hover:text-black"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 4L20 20H4L12 4Z"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <p>Deploy to Vercel</p>
+          </a>
+          <a
+            className="flex max-w-fit items-center justify-center space-x-2 rounded-full border border-gray-300 bg-white px-5 py-2 text-sm text-gray-600 shadow-md transition-colors hover:border-gray-800"
+            href="https://github.com/steven-tey/precedent"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Github />
+            <p>
+              <span className="hidden sm:inline-block">Star on</span> GitHub
+            </p>
+          </a>
         </div>
+      </div>
 
-
-
-        
+      <div className="my-10 grid w-full max-w-screen-xl grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0 mx-auto">
+        {features.map(({ title, description, demo, large }) => (
+          <Card
+            key={title}
+            title={title}
+            description={description}
+            demo={
+              title === "Beautiful, reusable components" ? (
+                <ComponentGrid />
+              ) : (
+                demo
+              )
+            }
+            large={large?.toString()}
+            />
+          ))}
       </div>
     </>
   );
 }
-
-
-
-const cards = [
-  {
-    id: 1,
-    content: <p>p1</p>,
-    className: "md:col-span-2",
-    thumbnail:
-      "https://images.unsplash.com/photo-1476231682828-37e571bc172f?q=80&w=3474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    id: 2,
-    content: <p>p2</p>,
-    className: "col-span-1",
-    thumbnail:
-      "https://images.unsplash.com/photo-1464457312035-3d7d0e0c058e?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    id: 3,
-    content: <p>p3</p>,
-    className: "col-span-1",
-    thumbnail:
-      "https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    id: 4,
-    content: <p>p4</p>,
-    className: "md:col-span-2",
-    thumbnail:
-      "https://images.unsplash.com/photo-1475070929565-c985b496cb9f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-];

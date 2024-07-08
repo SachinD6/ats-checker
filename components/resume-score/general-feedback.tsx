@@ -1,6 +1,6 @@
 export default function GeneralFeedback({ title }: { title: string }) {
   return (
-    <div className="p-4  border-black/[0.2] bg-gradient-to-tr from-purple-400/20 to-transparent dark:border-white/[0.2] rounded-xl border shadow-md">
+    <div className="p-4 border border-muted bg-gradient-to-br from-indigo-50 via-white to-cyan-50 rounded-xl shadow-md">
       <div className="p-4">
         <svg
           className="w-9 h-9 text-gray-300"

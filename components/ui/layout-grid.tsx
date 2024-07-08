@@ -25,7 +25,7 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
             layout
           >
             {/* {selected?.id === card.id && <SelectedCard selected={selected} />} */}
-            <div className="p-4 border border-black/[0.2] bg-gradient-to-tr from-purple-400/20 to-transparent dark:border-white/[0.2] rounded-lg">
+            <div className="p-4 border border-muted bg-gradient-to-br from-indigo-50 via-white to-cyan-50 shadow-xl rounded-lg">
 
             {card.content}
             </div>

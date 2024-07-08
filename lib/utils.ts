@@ -102,6 +102,3 @@ export const cleanText = (text: string) => {
 
   return sections;
 };
-
-
-

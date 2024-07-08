@@ -1,6 +1,3 @@
-import { IconHome, IconMessage, IconUser } from "@tabler/icons-react";
-
-
 export const navItems = [
 {
     name: "Home",

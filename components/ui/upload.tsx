@@ -70,7 +70,7 @@ const UploadForm = () => {
       setParseError(error?.message || "An error occurred");
       toast({
         title: "Uh oh! Something went wrong.",
-        description: parseError,
+        description: parseError || "Try refreshing the page & check you internet connectivity.",
       });
       setIsUploading(false);
     }
@@ -78,7 +78,7 @@ const UploadForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} action={handleSubmit} className="mt-32">
+      <form onSubmit={handleSubmit} action={handleSubmit} className="pt-32">
         <label
           htmlFor="dropzone-file"
           className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer"
@@ -103,7 +103,7 @@ const UploadForm = () => {
               <span className="font-semibold">Click to upload</span> or drag and
               drop
             </p>
-            <p className="text-xs mb-2">PDF (MAX 2mb)</p>
+            <p className="text-xs mb-2">PDF</p>
             <p>{selectedFile?.name}</p>
           </div>
           <Input
@@ -122,7 +122,7 @@ const UploadForm = () => {
           name="role"
           value={role}
           onChange={(e) => setRole(e.target.value)}
-          placeholder="Enter your role!"
+          placeholder="Enter your job role!"
         />{" "}
         <br />
         {/* <input type="text" name="role" value={role} onChange={()=> setRole(role)}/> <br/> */}

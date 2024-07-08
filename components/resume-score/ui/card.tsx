@@ -33,7 +33,7 @@ export function ResultCard({
   return (
     <Card
       className={cn(
-        "min-w-[400px] border border-black/[0.2] bg-gradient-to-tr from-purple-400/20 to-transparent dark:border-white/[0.2]",
+        "min-w-[400px] border border-muted bg-gradient-to-br from-indigo-50 via-white to-cyan-50",
         className
       )}
       {...props}

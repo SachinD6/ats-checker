@@ -85,7 +85,7 @@ export function ATSCORE({ score }: { score: number | string }) {
   const actionableTips = getActionableTips(Number(score));
 
   return (
-    <Card className="flex flex-col my-6 border border-black/[0.2] bg-gradient-to-tr from-purple-400/20 to-transparent dark:border-white/[0.2]">
+    <Card className="flex flex-col my-6 border border-muted bg-gradient-to-br from-indigo-50 via-white to-cyan-50">
       <CardHeader className="items-center pb-0">
         <CardTitle>{feedbackMessage}</CardTitle>
       </CardHeader>
@@ -102,13 +102,13 @@ export function ATSCORE({ score }: { score: number | string }) {
             endAngle={(360 * Number(score)) / 100} // Adjusting the end angle based on score
             innerRadius={80}
             outerRadius={140}
-            className="fill-primary"
+            className="drop-shadow-sm"
           >
             <PolarGrid
               gridType="circle"
               radialLines={false}
               stroke="none"
-              className="first:fill-muted last:fill-background"
+              className="first:fill-muted last:fill-background fill-black"
               polarRadius={[86, 74]}
             />
             <RadialBar dataKey="score" background />
