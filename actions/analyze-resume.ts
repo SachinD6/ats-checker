@@ -8,6 +8,8 @@ import { google } from "@ai-sdk/google";
 import { z } from "zod";
 import { cleanText } from "@/lib/utils";
 
+export const maxDuration = 25; // This function can run for a maximum of 25 seconds
+
 // Function to parse PDF files using pdf-parse
 const parsePdf = async (dataBuffer: Buffer): Promise<string> => {
   const data = await pdf(dataBuffer);
