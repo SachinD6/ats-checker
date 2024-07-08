@@ -106,7 +106,7 @@ export default function Page() {
                 demo
               )
             }
-            large={large?.toString()}
+            large={!!large}
             />
           ))}
       </div>

@@ -78,7 +78,7 @@ const UploadForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} action={handleSubmit} className="pt-32">
+      <form onSubmit={handleSubmit}  className="pt-32">
         <label
           htmlFor="dropzone-file"
           className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer"
