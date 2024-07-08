@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "action/*": {
+      "maxDuration": 30
+    },
+  }
+}
