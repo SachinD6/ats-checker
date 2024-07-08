@@ -9,6 +9,8 @@ import { sfPro, inter } from "@/app/fonts/index";
 import { cn } from "@/lib/utils";
 import Footer from "@/components/footer";
 
+export const maxDuration = 25
+
 
 export const metadata: Metadata = {
   title: "ClearScan - Resume Optimization Tool",
