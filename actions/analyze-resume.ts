@@ -17,8 +17,6 @@ const parsePdf = async (dataBuffer: Buffer): Promise<string> => {
 
 // Main function to parse the resume
 export const parseResume = async (data: FormData) => {
-  export const maxDuration = 25; // This function can run for a maximum of 25 seconds
-
   const formData = Object.fromEntries(data);
 
   // const file: File | null = data.get('file') as unknown as File;
