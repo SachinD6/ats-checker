@@ -1,6 +1,6 @@
 {
   "functions": {
-    "action/*": {
+    "actions/*": {
       "maxDuration": 30
     },
   }
