@@ -1,0 +1,9 @@
+{
+  "functions": {
+    "/actions": {  
+      "analyze-resume.ts": {
+        "maxDuration": 25
+      }
+    }
+  }
+}
