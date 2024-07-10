@@ -1,9 +1,7 @@
 {
   "functions": {
-    "/actions": {  
-      "analyze-resume.ts": {
-        "maxDuration": 25
-      }
+    "/actions/analyze-resume.ts": {  // Note the combined path
+      "maxDuration": 25
     }
   }
 }
