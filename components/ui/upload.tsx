@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-import { parseResume } from "@/actions/analyze-resume";
+import { parseResume } from "@/api/actions/analyze-resume";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 

@@ -1,6 +1,6 @@
 {
   "functions": {
-    "/actions/*.ts": { 
+    "api/actions/analyze-resume.ts": { 
       "maxDuration": 30
     }
   }
