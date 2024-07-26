@@ -63,6 +63,7 @@ const UploadForm = () => {
     formData.append("role", role);
 
     try {
+      "use server";
       const result = await parseResume(formData);
       setResult(result);
       setIsUploading(false);
