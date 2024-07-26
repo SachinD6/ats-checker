@@ -2,6 +2,9 @@
   "functions": {
     "api/actions/analyze-resume.ts": { 
       "maxDuration": 30
+    },
+     "app/**/*": {
+      "maxDuration": 30
     }
   }
 }
